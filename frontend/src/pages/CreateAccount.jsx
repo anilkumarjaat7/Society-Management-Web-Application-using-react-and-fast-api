@@ -1,6 +1,7 @@
 // src/pages/CreateAccount.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_ENDPOINTS, getApiUrl } from "../config/apiConfig";
 
 function CreateAccount() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function CreateAccount() {
     setMessage("");
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/auth/signup", {
+      const res = await fetch(getApiUrl(API_ENDPOINTS.signup), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +46,7 @@ function CreateAccount() {
       } else {
         setMessage(data.detail || "Something went wrong");
       }
-    } catch (error) {
+    } catch {
       setMessage("Server error");
     } finally {
       setLoading(false);

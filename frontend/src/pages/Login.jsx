@@ -1,6 +1,7 @@
 // src/pages/Login.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_ENDPOINTS, getApiUrl } from "../config/apiConfig";
 
 function Login() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Login() {
     setMessage("");
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/auth/login", {
+      const res = await fetch(getApiUrl(API_ENDPOINTS.login), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +98,7 @@ function Login() {
 
         <p className="text-sm text-center mt-4">
           Don’t have an account?{" "}
-          <Link to="/signup" className="text-blue-500 font-medium">
+          <Link to="/createAccount" className="text-blue-500 font-medium">
             Create Account
           </Link>
         </p>
